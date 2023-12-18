@@ -14,13 +14,16 @@ public class Client implements Runnable{
     @Override
     public void run() {
         try(Socket socket = this.socket) {
-            InputStream inputStream = socket.getInputStream();
+
             OutputStream outputStream = socket.getOutputStream();
             PrintWriter socketWriter = new PrintWriter(outputStream);
-            BufferedReader socketReader = new BufferedReader(new InputStreamReader(inputStream));
+            // считаю с конм=соли и отправлю на сервер
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Enter your message of type exit for quit");
+            String message = br.readLine();
 
-            while (true) {
-                String massage = socketReader.readLine();
+            while (!"exit".equals(br)) {
+                String massage = br.readLine();
                 if(massage == null){
                     break;
                 }
