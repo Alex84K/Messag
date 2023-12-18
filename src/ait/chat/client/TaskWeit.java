@@ -19,6 +19,7 @@ public class TaskWeit  implements Runnable{
             BufferedReader socketReader = new BufferedReader(new InputStreamReader(inputStream));
 
             while (true) {
+                LocalTime time = LocalTime.now();
                 String massage = socketReader.readLine();
                 System.out.println("Client received: " + massage);
             }

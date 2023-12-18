@@ -15,20 +15,15 @@ public class ChatClientSocketAppl {
         int port = 9000;
         ExecutorService executorService = Executors.newFixedThreadPool(2);
         try (final Socket socket = new Socket(serverHost, port)) {
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("Enter your message of type exit for quit");
-            String message = br.readLine();
-
                 try {
                         System.out.println("Client host: " + socket.getInetAddress() + socket.getPort());
                         TaskWeit taskWeit = new TaskWeit(socket);
                         Client client = new Client(socket);
                         executorService.execute(client);
                         executorService.execute(taskWeit);
-
                 } finally {
                     executorService.shutdown();
-                    executorService.awaitTermination(1, TimeUnit.MINUTES);
+                    executorService.awaitTermination(1, TimeUnit.DAYS);
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();

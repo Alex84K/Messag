@@ -20,7 +20,6 @@ public class Client implements Runnable{
             // считаю с конм=соли и отправлю на сервер
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Enter your message of type exit for quit");
-            String message = br.readLine();
 
             while (!"exit".equals(br)) {
                 String massage = br.readLine();
